@@ -1,55 +1,84 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-const wholeForm = document.querySelector('#new-film-form');
-wholeForm.addEventListener('submit', handleFormSubmission);
+    console.log("Hello Fraz");
 
-    const d3lete = document.createElement('button');
-    const div = document.createElement('div');
-    div.appendChild(d3lete);
-    wholeForm.appendChild(div);
+    const wholeForm = document.querySelector('#new-film-form');
+    wholeForm.addEventListener('submit', handleFormSubmission);
 
-const clearingInputs = document.querySelector('#new-film-form');
-clearingInputs.addEventListener('submit', handleClearingInputs);
+    // EVENT LISTENER AFTER SAVINGS ENTRY > RESET INPUT VALUES
+    const clearingInputs = document.querySelector('#new-film-form');
+    clearingInputs.addEventListener('submit', handleClearingInputs);
+
+        // CREATE BUTTON CHILD AND APPEND TO CREATED DIV
+        const buttondiv = document.createElement('div');
+        // ADD CLASS NAME TO BUTTON DIV FOR STYLING
+        buttondiv.classList.add('button1');
+        const d3lete = document.createElement('button');
+        d3lete.textContent = ('❌❌❌');
+        buttondiv.appendChild(d3lete);
+
+        // APPEND BUTTON TO FORM
+        wholeForm.appendChild(buttondiv);
+
+    const clearList = document.querySelector('.button1');
+    clearList.addEventListener('click', handleClearingListItems);
 
 });
 
-handleFormSubmission = function (event) {
+const handleFormSubmission = function (event) {
 
     event.preventDefault();
 
-    // GRAB FORM INPUTS
-    const filmInput = document.querySelector('#new-film-form');
-    // GRAB FILM UL
-    const films = document.querySelector('#film-list');
+
+    // GRAB FILM UL/OUTPUT FORM
+
+    const filmItems = document.querySelector('#film-list');
+    
+    // CREATE DIV FOR INPUTS CHILD WRAPPER
+
+    const formDivChild = document.createElement('div');
+
+    // GIVE DIV CHILD CLASS NAME - for later styling
+
+    formDivChild.classList.add('film-box');
+
 
     // CREATE VARIABLES FOR INPUT FIELDS
-    title = document.querySelector('#title');
-    director = document.querySelector('#director');
-    genre = document.querySelector('#genre');
+
+    const title = event.target.title.value;
+    const director = event.target.director.value;
+    const genre = event.target.genre.value;
 
     // CREATE DIV AND CHILD LI ELEMENTS FOR INSERTION INTO FILM UL
-    const formDiv = document.createElement('div');
 
     const titleEntry = document.createElement('li');
+    titleEntry.textContent = title;
     const directorEntry = document.createElement('li');
+    directorEntry.textContent = director;
     const genreEntry = document.createElement('li');
+    genreEntry.textContent = genre;
 
-    // APPEND CHILD LI ELEMENTS TO PARENT DIV
-    const listItems = document.querySelectorAll('li');
-    formDiv.appendChild(listItems);
+    // APPEND NEW CHILD DIV ('LI') ELEMENTS TO PARENT DIV (DIV THAT WILL BE APPENDED TO ('#FILM-LIST))
+
+    formDivChild.appendChild(titleEntry);
+    formDivChild.appendChild(directorEntry);
+    formDivChild.appendChild(genreEntry);
 
     // THEN APPEND DIV CHILDREN TO FILM LIST
-    films.appendChild(formDiv);
 
-
-    // SHOULD BE APPENDING LI AND DIV ELEMENTS TO FILM-LIST ID (<UL> FOR FILM LIST);
-
-
+    filmItems.appendChild(formDivChild);
 
 };
 
-handleClearingInputs = function() {
-    const inputFields = document.querySelector('#new-film-form');
-    inputFields.reset();
+const handleClearingInputs = function() {
+    // RESET FORM INPUT FIELDS
+    const resetForm = document.querySelector('#new-film-form');
+    resetForm.reset();
 
 };
+
+const handleClearingListItems = function () {
+    // RESET FILM LIST ITEMS
+    const resetFilmItems = document.querySelector('#film-list');
+    resetFilmItems.innerHTML = ('');
+}
