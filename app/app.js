@@ -14,8 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-let formDivChild;
-
 const handleFormSubmission = function (event) {
 
     event.preventDefault();
@@ -54,7 +52,6 @@ const handleFormSubmission = function (event) {
     // THEN APPEND DIV CHILDREN TO FILM LIST
     const filmItems = document.querySelector('#film-list');
     filmItems.appendChild(formDivChild);
-    console.log(event.target);
 
     // CREATE BUTTON CHILD
 
@@ -86,11 +83,13 @@ const handleClearingInputs = function() {
 
 };
 
-const handleClearingListItems = function () {
+const handleClearingListItems = function (event) {
     // RESET FILM LIST ITEMS
-    const litContent = formDivChild.innerHTML;
+    let formDivChild = document.querySelector(".film-box");
+    let listContent = formDivChild.innerHTML;
     // formDivChild.setAttribute("id", "film-box-id");
     formDivChild.innerHTML = '';
+    console.log(event.target);
 
     // const parentDiv = formDivChild.parentnode;
     // parentDiv.removeChild(formDivChild);
