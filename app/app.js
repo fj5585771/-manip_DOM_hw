@@ -1,40 +1,26 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => { 
 
-    console.log("Hello Fraz");
-
+    // GRAB WHOLE FORM SECTION FOR DOM MANIP.
     const wholeForm = document.querySelector('#new-film-form');
     wholeForm.addEventListener('submit', handleFormSubmission);
 
-    // EVENT LISTENER AFTER SAVINGS ENTRY > RESET INPUT VALUES
+    // EVENT LISTENER FOR RESETTING FORM INPUT VALUES
     const clearingInputs = document.querySelector('#new-film-form');
     clearingInputs.addEventListener('submit', handleClearingInputs);
 
-        // CREATE BUTTON CHILD AND APPEND TO CREATED DIV
-        const buttondiv = document.createElement('div');
-        // ADD CLASS NAME TO BUTTON DIV FOR STYLING
-        buttondiv.classList.add('button1');
-        const d3lete = document.createElement('button');
-        d3lete.textContent = ('❌❌❌');
-        buttondiv.appendChild(d3lete);
-
-        // APPEND BUTTON TO FORM
-        wholeForm.appendChild(buttondiv);
-
-    const clearList = document.querySelector('.button1');
+    // EVENT LISTENER FOR CLEAR LIST ITEMS BUTTON
+    const clearList = document.querySelector('#film-list');
     clearList.addEventListener('click', handleClearingListItems);
 
 });
 
+let formDivChild;
+
 const handleFormSubmission = function (event) {
 
     event.preventDefault();
-
-
-    // GRAB FILM UL/OUTPUT FORM
-
-    const filmItems = document.querySelector('#film-list');
     
-    // CREATE DIV FOR INPUTS CHILD WRAPPER
+    // CREATE DIV FOR COLLECTIVE INPUTS CHILD WRAPPER
 
     const formDivChild = document.createElement('div');
 
@@ -43,20 +29,21 @@ const handleFormSubmission = function (event) {
     formDivChild.classList.add('film-box');
 
 
-    // CREATE VARIABLES FOR INPUT FIELDS
+    // CREATE VARIABLES FOR INPUT FIELD VALUES;
 
     const title = event.target.title.value;
     const director = event.target.director.value;
     const genre = event.target.genre.value;
 
-    // CREATE DIV AND CHILD LI ELEMENTS FOR INSERTION INTO FILM UL
+    // CREATE DIV AND CHILD LI ELEMENTS FOR INSERTION INTO FILM UL;
 
     const titleEntry = document.createElement('li');
-    titleEntry.textContent = title;
+    titleEntry.textContent = title
     const directorEntry = document.createElement('li');
     directorEntry.textContent = director;
     const genreEntry = document.createElement('li');
     genreEntry.textContent = genre;
+
 
     // APPEND NEW CHILD DIV ('LI') ELEMENTS TO PARENT DIV (DIV THAT WILL BE APPENDED TO ('#FILM-LIST))
 
@@ -65,8 +52,30 @@ const handleFormSubmission = function (event) {
     formDivChild.appendChild(genreEntry);
 
     // THEN APPEND DIV CHILDREN TO FILM LIST
-
+    const filmItems = document.querySelector('#film-list');
     filmItems.appendChild(formDivChild);
+    console.log(event.target);
+
+    // CREATE BUTTON CHILD
+
+    const buttonDiv = document.createElement('button');
+
+    // ADD CLASS NAME TO BUTTON DIV FOR STYLING
+
+    buttonDiv.classList.add('button1');
+    buttonDiv.textContent = ('Remove selection'); 
+
+    // APPEND BUTTON TO FORM - EDIT: CHANGED TO APPEND ON UL 
+    filmItems.appendChild(buttonDiv);   
+    console.log(event.target)
+
+    // THIS WILL CALL BUTTON EACH TIME THE FORM SUBMISSION IS MADE - WE CAN USE THIS TO CLEAR EACH ENTRY INPUT **
+
+        // ** THE NEWLY CREATED BUTTON MUST HAVE ID TO REFER TO. SO THAT WHEN STORING TARGETED VALUES IN OBJECTS, 
+
+        // E.G (CONST REMOVEBUTTON - EVENT.TARGET.BUTTON.VALUE)
+
+        // WE DONT WANT TO STORE IT INSIDE CREATED ELEMENT AS TEXT CONTENT, WE WANT IT TO REMOVE INDIVIDUAL ENTRY THAT IT IS BEING CALLED ON
 
 };
 
@@ -79,6 +88,10 @@ const handleClearingInputs = function() {
 
 const handleClearingListItems = function () {
     // RESET FILM LIST ITEMS
-    const resetFilmItems = document.querySelector('#film-list');
-    resetFilmItems.innerHTML = ('');
+    const litContent = formDivChild.innerHTML;
+    // formDivChild.setAttribute("id", "film-box-id");
+    formDivChild.innerHTML = '';
+
+    // const parentDiv = formDivChild.parentnode;
+    // parentDiv.removeChild(formDivChild);
 }
