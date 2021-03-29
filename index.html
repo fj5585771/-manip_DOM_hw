@@ -7,35 +7,35 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
   </head>
   <body>
-        <form id="new-film-form">
-            <div id="form-wrapper">
-                <div class="film-item">
-                    <label for="title" class="primary">Title</label>
-                    <input type="text" id="title" required/>
-                </div>
-        
-                <div class="film-item">
-                    <label for="director" class="primary">Director</label>
-                    <input type="text" id="director" required/>
-                </div>
-        
-                <div class="film-item">
-                    <label for="genre" class="primary">Genre</label>
-                    <select id="genre">
-                    <option value="" disabled selected></option>
-                    <option value="Drama">Drama</option>
-                    <option value="Horror">Horror</option>
-                    <option value="Sci-fi">Sci-fi</option>
-                    <option value="Thriller">Thriller</option>
-                    <option value="Mystical">Mystical</option>
-                    <option value="Comedy">Comedy</option>
-                    </select>
-                </div>
+    <form id="new-film-form">
+        <div id="form-wrapper">
+            <div class="film-item">
+            <label for="title" class="primary">Title</label>
+            <input type="text" id="title" required/>
             </div>
-            <input type="submit" value="save"/>
-        </form>
+    
+            <div class="film-item">
+            <label for="director" class="primary">Director</label>
+            <input type="text" id="director" required/>
+            </div>
+    
+            <div class="film-item">
+            <label for="genre" class="primary">Genre</label>
+            <select id="genre">
+            <option value="" disabled selected></option>
+            <option value="Drama">Drama</option>
+            <option value="Horror">Horror</option>
+            <option value="Sci-fi">Sci-fi</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Mystical">Mystical</option>
+            <option value="Comedy">Comedy</option>
+            </select>
+            </div>
+        </div>
+        <input type="submit" value="save"/>
+    </form>
 
-        <h1>Film List</h1>
-        <ul id="film-list"></ul>
+    <h1>Film List</h1>
+    <ul id="film-list"></ul>
   </body>
 </HTML>
