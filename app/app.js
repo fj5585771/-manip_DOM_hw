@@ -18,14 +18,20 @@ const handleFormSubmission = function (event) {
     const newListItem = createFilmListItem(event.target);
     const parentList = document.querySelector('#film-list');
     parentList.appendChild(newListItem);
-    event.target.reset();
+    // event.target.reset();
+    console.log(event);
+    console.log(event.target);
+    
 };
 
 const createFilmListItem = function (event) {
+    console.log(event);
     // CREATE DIV AND CHILD LI ELEMENTS FOR INSERTION INTO FILM UL;
-    const title = event.title.value;
-    const director = event.director.value;
-    const genre = event.genre.value;
+    const title = this.title.value;
+    const director = this.director.value;
+    const genre = this.genre.value;
+    const fav = this.favourite.checked;
+
     const titleEntry = document.createElement('h3');
     titleEntry.textContent = title
     const directorEntry = document.createElement('p');
@@ -33,19 +39,30 @@ const createFilmListItem = function (event) {
     const genreEntry = document.createElement('p');
     genreEntry.textContent = genre;
 
-    // THEN APPEND CHILD LIST TO PARENT DIV
+    const favEntry = document.querySelector('input[name="fav"]');
+    let selectedValue;
+    if (favEntry.checked){
+        selectedValue = favEntry.value;
+    }
+
+    const newFavEntry = document.createElement('p');
+    newFavEntry.textContent = selectedValue;
+
+    // THEN APPEND CHILD LIST ELS TO PARENT UL
     const newListItem = document.createElement('li');
     newListItem.appendChild(titleEntry);
     newListItem.appendChild(directorEntry);
     newListItem.appendChild(genreEntry);
+    newListItem.appendChild(newFavEntry);
 
     // CREATE BUTTON AND APPEND
     const button = document.createElement('button');
     button.classList.add('button');
-    button.textContent = 'delete'; 
+    button.textContent = 'remove'; 
     newListItem.appendChild(button); 
 
     return newListItem;
+
 }
 
 const handleClearingInputs = function() {
@@ -55,9 +72,10 @@ const handleClearingInputs = function() {
 };
 
 const handleClearingListItems = function () {
-    // RESET FILM LIST ITEMS
-    const newList = document.querySelector("#film-list");
-    newList.innerHTML ='';
-    
-
-}
+    // CLEAR FILM LIST ITEMS
+    console.log('button has been clicked');
+    const newList = document.querySelector('#film-list');
+    const listChild = document.querySelector('li');
+    newList.removeChild(listChild);
+  
+};
