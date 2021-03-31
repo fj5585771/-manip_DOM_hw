@@ -74,8 +74,8 @@ const handleClearingInputs = function() {
 const handleClearingListItems = function () {
     // CLEAR FILM LIST ITEMS
     console.log('button has been clicked');
-    const newList = document.querySelector('#film-list');
+    // const newList = document.querySelector('#film-list');
     const listChild = document.querySelector('li');
-    newList.removeChild(listChild);
+    listChild.parentNode.removeChild(listChild);
   
 };
